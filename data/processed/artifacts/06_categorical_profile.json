@@ -1,0 +1,320 @@
+{
+  "ID": {
+    "unique": 7728394,
+    "top_values": {
+      "A-1": 1,
+      "A-5191324": 1,
+      "A-5191336": 1,
+      "A-5191335": 1,
+      "A-5191334": 1,
+      "A-5191333": 1,
+      "A-5191332": 1,
+      "A-5191331": 1,
+      "A-5191330": 1,
+      "A-5191329": 1,
+      "A-5191328": 1,
+      "A-5191327": 1,
+      "A-5191326": 1,
+      "A-5191325": 1,
+      "A-5191323": 1,
+      "A-5191309": 1,
+      "A-5191322": 1,
+      "A-5191321": 1,
+      "A-5191320": 1,
+      "A-5191319": 1
+    },
+    "rare_values": 7728394
+  },
+  "Source": {
+    "unique": 3,
+    "top_values": {
+      "Source1": 4325632,
+      "Source2": 3305373,
+      "Source3": 97389
+    },
+    "rare_values": 0
+  },
+  "Description": {
+    "unique": 3761578,
+    "top_values": {
+      "A crash has occurred causing no to minimum delays. Use caution.": 9593,
+      "Accident": 6616,
+      "An unconfirmed report of a crash has been received. Use caution.": 3799,
+      "A crash has occurred use caution.": 2894,
+      "A crash has occurred with minimal delay to traffic. Prepare to slow or move over for worker safety.": 2672,
+      "A disabled vehicle is creating a hazard causing no to minimum delays. Use caution.": 2365,
+      "At I-15 - Accident.": 2136,
+      "At I-5 - Accident.": 1931,
+      "Incident on I-95 SB near I-95 Drive with caution.": 1907,
+      "Incident on I-95 NB near I-95 Drive with caution.": 1886,
+      "Hazardous debris is causing no to minimum delays. Use caution.": 1815,
+      "At I-405/San Diego Fwy - Accident.": 1784,
+      "At I-605 - Accident.": 1497,
+      "A crash has occurred. Prepare to slow or move over for worker safety.": 1451,
+      "Incident on I-64 WB near I-64 Drive with caution.": 1228,
+      "An unconfirmed report of a disabled vehicle creating a hazard has been received. Use caution.": 1186,
+      "Incident on I-95 near I-95 Drive with caution.": 1121,
+      "At Grand Ave - Accident.": 1120,
+      "Incident on I-64 EB near I-64 Drive with caution.": 1077,
+      "At Central Ave - Accident.": 967
+    },
+    "rare_values": 3680037
+  },
+  "Street": {
+    "unique": 336306,
+    "top_values": {
+      "I-95 N": 78430,
+      "I-95 S": 74528,
+      "I-5 N": 71968,
+      "I-10 E": 55572,
+      "I-10 W": 53725,
+      "I-5 S": 51781,
+      "I-80 W": 39662,
+      "I-80 E": 36113,
+      "I-405 N": 32364,
+      "I-75 N": 28166,
+      "I-75 S": 27546,
+      "I-90 E": 26426,
+      "I-15 N": 24470,
+      "I-94 W": 24003,
+      "I-90 W": 23279,
+      "US-101 N": 20041,
+      "I-95": 20028,
+      "I-94 E": 19940,
+      "I-70 E": 19697,
+      "I-15 S": 19230
+    },
+    "rare_values": 274107
+  },
+  "City": {
+    "unique": 13678,
+    "top_values": {
+      "Miami": 186917,
+      "Houston": 169609,
+      "Los Angeles": 156491,
+      "Charlotte": 138652,
+      "Dallas": 130939,
+      "Orlando": 109733,
+      "Austin": 97359,
+      "Raleigh": 86079,
+      "Nashville": 72930,
+      "Baton Rouge": 71588,
+      "Atlanta": 68186,
+      "Sacramento": 66264,
+      "San Diego": 55504,
+      "Phoenix": 53974,
+      "Minneapolis": 51488,
+      "Richmond": 48845,
+      "Oklahoma City": 46092,
+      "Jacksonville": 42447,
+      "Tucson": 39304,
+      "Columbia": 38178
+    },
+    "rare_values": 4238
+  },
+  "County": {
+    "unique": 1871,
+    "top_values": {
+      "Los Angeles": 526851,
+      "Miami-Dade": 251601,
+      "Orange": 241275,
+      "Harris": 181196,
+      "Dallas": 157024,
+      "Mecklenburg": 147265,
+      "Montgomery": 136788,
+      "Wake": 117890,
+      "San Bernardino": 109631,
+      "Travis": 107881,
+      "Maricopa": 106737,
+      "San Diego": 104165,
+      "Alameda": 98553,
+      "Davidson": 96580,
+      "Sacramento": 95377,
+      "Riverside": 88248,
+      "East Baton Rouge": 75260,
+      "Santa Clara": 70482,
+      "Cook": 65599,
+      "Marion": 59498
+    },
+    "rare_values": 250
+  },
+  "State": {
+    "unique": 49,
+    "top_values": {
+      "CA": 1741433,
+      "FL": 880192,
+      "TX": 582837,
+      "SC": 382557,
+      "NY": 347960,
+      "NC": 338199,
+      "VA": 303301,
+      "PA": 296620,
+      "MN": 192084,
+      "OR": 179660,
+      "AZ": 170609,
+      "GA": 169234,
+      "IL": 168958,
+      "TN": 167388,
+      "MI": 162191,
+      "LA": 149701,
+      "NJ": 140719,
+      "MD": 140417,
+      "OH": 118115,
+      "WA": 108221
+    },
+    "rare_values": 0
+  },
+  "Zipcode": {
+    "unique": 825094,
+    "top_values": {
+      "91761": 11247,
+      "91706": 10022,
+      "92407": 8922,
+      "92507": 8850,
+      "33186": 8375,
+      "32819": 7461,
+      "91765": 7377,
+      "33169": 7106,
+      "90023": 7066,
+      "92324": 7010,
+      "75243": 6914,
+      "90012": 6852,
+      "90805": 6703,
+      "90703": 6627,
+      "91342": 6471,
+      "90248": 6411,
+      "92108": 6382,
+      "91403": 6361,
+      "94551": 6250,
+      "29210": 6245
+    },
+    "rare_values": 777170
+  },
+  "Country": {
+    "unique": 1,
+    "top_values": {
+      "US": 7728394
+    },
+    "rare_values": 0
+  },
+  "Timezone": {
+    "unique": 4,
+    "top_values": {
+      "US/Eastern": 3580167,
+      "US/Pacific": 2062984,
+      "US/Central": 1645616,
+      "US/Mountain": 431819
+    },
+    "rare_values": 0
+  },
+  "Airport_Code": {
+    "unique": 2045,
+    "top_values": {
+      "KCQT": 118332,
+      "KRDU": 107267,
+      "KMCJ": 101786,
+      "KBNA": 98926,
+      "KCLT": 97273,
+      "KORL": 82480,
+      "KMIA": 81358,
+      "KBTR": 78304,
+      "KOPF": 70665,
+      "KDAL": 69353,
+      "KATT": 68738,
+      "KEMT": 67399,
+      "KLGA": 66499,
+      "KFUL": 62196,
+      "KHHR": 60262,
+      "KTMB": 57774,
+      "KSNA": 55776,
+      "KCCR": 47719,
+      "KLOM": 45110,
+      "KSBD": 44799
+    },
+    "rare_values": 119
+  },
+  "Wind_Direction": {
+    "unique": 24,
+    "top_values": {
+      "CALM": 961624,
+      "S": 419989,
+      "SSW": 384840,
+      "W": 383913,
+      "WNW": 378781,
+      "NW": 369352,
+      "Calm": 368557,
+      "SW": 364470,
+      "WSW": 353806,
+      "SSE": 349110,
+      "NNW": 333427,
+      "N": 307151,
+      "SE": 294901,
+      "E": 278914,
+      "ESE": 268311,
+      "NE": 258639,
+      "ENE": 258474,
+      "NNE": 255311,
+      "VAR": 250566,
+      "South": 177375
+    },
+    "rare_values": 0
+  },
+  "Weather_Condition": {
+    "unique": 144,
+    "top_values": {
+      "Fair": 2560802,
+      "Mostly Cloudy": 1016195,
+      "Cloudy": 817082,
+      "Clear": 808743,
+      "Partly Cloudy": 698972,
+      "Overcast": 382866,
+      "Light Rain": 352957,
+      "Scattered Clouds": 204829,
+      "Light Snow": 128680,
+      "Fog": 99238,
+      "Rain": 84331,
+      "Haze": 76223,
+      "Fair / Windy": 35671,
+      "Heavy Rain": 32309,
+      "Light Drizzle": 22684,
+      "Thunder in the Vicinity": 17611,
+      "Cloudy / Windy": 17035,
+      "T-Storm": 16810,
+      "Mostly Cloudy / Windy": 16508,
+      "Snow": 15537
+    },
+    "rare_values": 40
+  },
+  "Sunrise_Sunset": {
+    "unique": 2,
+    "top_values": {
+      "Day": 5334553,
+      "Night": 2370595
+    },
+    "rare_values": 0
+  },
+  "Civil_Twilight": {
+    "unique": 2,
+    "top_values": {
+      "Day": 5695619,
+      "Night": 2009529
+    },
+    "rare_values": 0
+  },
+  "Nautical_Twilight": {
+    "unique": 2,
+    "top_values": {
+      "Day": 6076156,
+      "Night": 1628992
+    },
+    "rare_values": 0
+  },
+  "Astronomical_Twilight": {
+    "unique": 2,
+    "top_values": {
+      "Day": 6377548,
+      "Night": 1327600
+    },
+    "rare_values": 0
+  }
+}

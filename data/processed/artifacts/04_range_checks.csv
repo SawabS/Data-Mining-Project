@@ -1,0 +1,31 @@
+,0
+Severity_range,"count   7728394.000000
+mean          2.212384
+std           0.487531
+min           1.000000
+25%           2.000000
+50%           2.000000
+75%           2.000000
+max           4.000000
+Name: Severity, dtype: float64"
+Severity_out_of_set,0
+Distance_stats,"count   7728394.000000
+mean          0.561842
+std           1.754878
+min           0.000000
+25%           0.000000
+50%           0.030000
+75%           0.464000
+max         441.750000
+Name: Distance(mi), dtype: float64"
+Distance_negative,0
+Distance_extreme,0
+Start_Lat_out_of_bounds,0
+End_Lat_out_of_bounds,3402762
+Start_Lng_out_of_bounds,0
+End_Lng_out_of_bounds,3402762
+Temperature(F)_negatives,19478
+Wind_Speed(mph)_negatives,0
+Visibility(mi)_negatives,0
+Humidity(%)_negatives,0
+Pressure(in)_negatives,0

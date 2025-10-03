@@ -1,0 +1,4 @@
+,dtype
+Start_Time,datetime64[ns]
+End_Time,datetime64[ns]
+Weather_Timestamp,datetime64[ns]
