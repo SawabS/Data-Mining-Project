@@ -1,0 +1,84 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model Accident {
+    id                   String   @id @default(uuid())
+    source               String
+    severity             Int
+    startTime            DateTime
+    endTime              DateTime
+    startLat             Decimal  @db.Decimal(20, 10)
+    startLng             Decimal  @db.Decimal(20, 10)
+    distance             Float
+    description          String
+    street               String
+    city                 String
+    county               String
+    state                String
+    zipcode              String
+    country              String
+    timezone             String
+    airportCode          String
+    weatherTimestamp     DateTime
+    temperature          Float
+    humidity             Float
+    pressure             Float
+    visibility           Float
+    windDirection        String
+    windSpeed            Decimal  @db.Decimal(20, 10)
+    weatherCondition     String
+    amenity              Boolean
+    bump                 Boolean
+    crossing             Boolean
+    giveWay              Boolean
+    junction             Boolean
+    noExit               Boolean
+    railway              Boolean
+    roundabout           Boolean
+    station              Boolean
+    stop                 Boolean
+    trafficCalming       Boolean
+    trafficSignal        Boolean
+    turningLoop          Boolean
+    sunriseSunset        String
+    civilTwilight        String
+    nauticalTwilight     String
+    astronomicalTwilight String
+    durationSeconds      Int
+    year                 Int
+    month                Int
+    hour                 Int
+    dayOfWeek            String
+
+    // Indexes for optimized queries
+    @@index([hour, dayOfWeek]) // Temporal heatmap
+    @@index([state, city]) // Filter options & regional queries
+    @@index([state, county, city]) // Treemap hierarchy
+    @@index([startLat, startLng]) // Hexbin map
+    @@index([severity]) // Parallel coordinates & filtering
+    // POI Covering Indexes (Optimized for Stacked Bar Chart)
+    @@index([junction, severity])
+    @@index([trafficSignal, severity])
+    @@index([stop, severity])
+    @@index([crossing, severity])
+    @@index([bump, severity])
+    @@index([amenity, severity])
+    @@index([giveWay, severity])
+    @@index([noExit, severity])
+    @@index([railway, severity])
+    @@index([roundabout, severity])
+    @@index([station, severity])
+    @@index([trafficCalming, severity])
+    @@index([turningLoop, severity])
+    // NEW: Covering indexes for optimized data loading
+    @@index([year, month]) // Time-based partitioning queries
+    @@index([state, startLat, startLng]) // Hexbin with state filter
+    @@index([state, year, month, startLat, startLng]) // Hexbin with state + time filter
+    @@index([id]) // Cursor-based pagination (already primary key but explicit)
+}

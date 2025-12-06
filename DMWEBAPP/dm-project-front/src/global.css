@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "tailwindcss";
+
+@plugin 'tailwindcss-animate';
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "bukra";
+  src: url("/fonts/UNIQAIDAR_BUKRA 003.woff2") format("woff2");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: bukra-bold;
+  src: url("/fonts/UNIQAIDAR_BUKRA 002.woff2") format("woff2");
+  font-display: swap;
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: poppins;
+  src: url("/fonts/Poppins-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: poppins-bold;
+  src: url("/fonts/Poppins-Bold.woff2") format("woff2");
+  font-display: swap;
+  font-weight: bold;
+  font-style: normal;
+}
+@theme inline {
+  --font-bukra: bukra, "sans-serif";
+  --font-bukra-bold: bukra-bold, "sans-serif";
+  --font-poppins: poppins, "sans-serif";
+  --font-poppins-bold: poppins-bold, "sans-serif";
+  --color-on-white-text: var(--on-white-text);
+  --color-cta: var(--cta);
+  --color-primary-girl: var(--primary_girl);
+  --color-primary-boy: var(--primary_boy);
+  --color-card-full-white: var(--card_full_white);
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --color-muted-foreground: var(--text);
+  --color-foreground: var(--text);
+  --color-card-foreground: var(--text);
+  --color-card: var(--card_full_white);
+  --color-popover: var(--card_full_white);
+  --color-popover-foreground: var(--text);
+  --color-accent-foreground: var(--text);
+  --color-destructive: var(--cta);
+  --color-accent: var(--cta);
+  --color-border: var(--text);
+  --color-primary: var(--cta);
+  --color-primary-foreground: var(--card_full_white);
+  --color-input: var(--background);
+  --color-secondary: var(--primary_boy);
+  --color-secondary-foreground: var(--card_full_white);
+  --color-destructive-foreground: var(--card_full_white);
+  --color-destructive: var(--destructive);
+  --color-primary: var(--cta);
+  --color-primary-foreground: var(--card_full_white);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@layer components {
+  .heading_1 {
+    @apply text-2xl md:text-4xl lg:text-5xl font-bold;
+  }
+  .heading_2 {
+    @apply text-xl md:text-3xl lg:text-4xl font-bold;
+  }
+  .heading_3 {
+    @apply text-lg md:text-xl lg:text-2xl font-bold;
+  }
+  .body {
+    @apply text-sm md:text-base lg:text-lg;
+  }
+  .caption {
+    @apply text-xs md:text-sm lg:text-base;
+  }
+  
+  /* Custom grid for 24-column heatmap */
+  .grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+}
+
+/* Cool Orange & Blue Light Theme */
+:root {
+  --radius: 0.65rem;
+  --cta: #f97316; /* Cool Orange */
+  --cta-hover: #ea580c;
+  --primary_girl: #3b82f6; /* Blue */
+  --primary_boy: #0ea5e9; /* Sky */
+  --card_full_white: #ffffff;
+  --background: #f0f4f8; /* Cool Blue-Gray */
+  --text: #334155;
+  --on-white-text: #1e293b;
+  --destructive: #ef4444;
+  --success: #22c55e;
+  --warning: #eab308;
+  --info: #3b82f6;
+  --accent: #f97316;
+  --muted: #94a3b8;
+  --border-color: #cbd5e1;
+  --chart-1: #f97316;
+  --chart-2: #3b82f6;
+  --chart-3: #22c55e;
+  --chart-4: #eab308;
+  --chart-5: #8b5cf6;
+}
+
+/* Tokyo Night Cool Green Theme */
+.dark {
+  --radius: 0.65rem;
+  --cta: #73daca; /* Tokyo Night Teal/Green */
+  --cta-hover: #2ac3de;
+  --primary_girl: #bb9af7; /* Tokyo Night Purple */
+  --primary_boy: #7aa2f7; /* Tokyo Night Blue */
+  --card_full_white: #1f2335; /* Tokyo Night Storm */
+  --background: #1a1b26; /* Tokyo Night Dark */
+  --text: #a9b1d6;
+  --on-white-text: #c0caf5;
+  --destructive: #f7768e;
+  --success: #9ece6a;
+  --warning: #e0af68;
+  --info: #7dcfff;
+  --accent: #73daca;
+  --muted: #565f89;
+  --border-color: #414868;
+  --chart-1: #73daca;
+  --chart-2: #7aa2f7;
+  --chart-3: #bb9af7;
+  --chart-4: #e0af68;
+  --chart-5: #f7768e;
+}
+
+/* Severity colors for both themes - optimized for visibility */
+:root {
+  --severity-1: #3b82f6; /* Blue 500 - Cool Blue */
+  --severity-2: #eab308; /* Yellow 500 */
+  --severity-3: #f97316; /* Orange 500 */
+  --severity-4: #ef4444; /* Red 500 */
+  
+  /* Heatmap color scale */
+  --heat-0: #f0f4f8;
+  --heat-1: #bae6fd; /* Sky 200 */
+  --heat-2: #60a5fa; /* Blue 400 */
+  --heat-3: #fb923c; /* Orange 400 */
+  --heat-4: #f97316; /* Orange 500 */
+  --heat-5: #ef4444; /* Red 500 */
+  
+  /* Hexbin density colors */
+  --hexbin-low: #bae6fd; /* Sky 200 */
+  --hexbin-med-low: #60a5fa; /* Blue 400 */
+  --hexbin-med: #8b5cf6; /* Violet 500 */
+  --hexbin-high: #f97316; /* Orange 500 */
+  --hexbin-very-high: #ef4444; /* Red 500 */
+}
+
+.dark {
+  --severity-1: #2ac3de; /* Cyan */
+  --severity-2: #9ece6a; /* Green */
+  --severity-3: #e0af68; /* Orange/Gold */
+  --severity-4: #f7768e; /* Red/Pink */
+  
+  /* Heatmap color scale - dark theme */
+  --heat-0: #1a1b26;
+  --heat-1: #2ac3de; /* Cyan */
+  --heat-2: #73daca; /* Teal */
+  --heat-3: #9ece6a; /* Green */
+  --heat-4: #e0af68; /* Orange/Gold */
+  --heat-5: #f7768e; /* Red/Pink */
+  
+  /* Hexbin density colors - dark theme */
+  --hexbin-low: #2ac3de; /* Cyan */
+  --hexbin-med-low: #73daca; /* Teal */
+  --hexbin-med: #9ece6a; /* Green */
+  --hexbin-high: #e0af68; /* Orange */
+  --hexbin-very-high: #f7768e; /* Red/Pink */
+}
+
+/* Chart loading animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}

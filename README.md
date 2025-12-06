@@ -1,303 +1,187 @@
 # 🚗 US Accidents Data Mining Project
 
+<div align="center">
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://python.org)
-[![React](https://img.shields.io/badge/React-19.x-61DAFB.svg)](https://react.dev)
-[![NestJS](https://img.shields.io/badge/NestJS-10.x-E0234E.svg)](https://nestjs.com)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg)](https://typescriptlang.org)
+[![React](https://img.shields.io/badge/React-19.x-61DAFB.svg?logo=react&logoColor=black)](https://react.dev)
+[![NestJS](https://img.shields.io/badge/NestJS-10.x-E0234E.svg?logo=nestjs&logoColor=white)](https://nestjs.com)
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB.svg?logo=python&logoColor=white)](https://python.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg?logo=typescript&logoColor=white)](https://typescriptlang.org)
 
-> A comprehensive data mining and visualization platform for analyzing US traffic accidents (7.7M records). Features an interactive web application with geospatial visualizations, temporal analysis, and advanced data exploration tools.
+**A comprehensive data mining and visualization platform for analyzing 7.7 million US traffic accident records.**
 
-## 📋 Table of Contents
+[Overview](#-overview) • [Features](#-features) • [Tech Stack](#-technology-stack) • [Setup Guide](#-installation--setup) • [Documentation](#-documentation)
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Dataset](#-dataset)
-- [Technology Stack](#-technology-stack)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Notebooks](#-notebooks)
-- [Web Application](#-web-application)
-- [Documentation](#-documentation)
-- [Academic Context](#-academic-project)
+</div>
+
+---
 
 ## 🎯 Overview
 
-This project provides end-to-end data mining analysis of US traffic accidents, combining:
+This project represents a complete end-to-end data mining solution, transforming raw traffic accident data into actionable insights. By leveraging a modern full-stack architecture alongside robust data science pipelines, we provide a powerful interface for exploring patterns in accident severity, weather conditions, and geographic distribution across the United States (2016-2023).
 
-- **Data Pipeline**: Comprehensive cleaning and preprocessing of 7.7M accident records
-- **Exploratory Analysis**: Statistical analysis, correlation studies, and pattern discovery
-- **Interactive Web App**: Full-stack application for real-time data exploration and visualization
-- **Geospatial Analysis**: Map-based visualizations including hexbin maps and regional treemaps
+The system processes **7.7 million records** through a memory-efficient cleaning pipeline and serves them via a high-performance REST API to an interactive React-based dashboard.
 
 ## ✨ Features
 
-### Data Analysis
+### 🔬 Data Science Pipeline
 
-- ✅ Automated data cleaning pipeline with memory-efficient chunking
-- ✅ Missing value treatment (mean/mode imputation strategies)
-- ✅ Datetime conversion and validation
-- ✅ Range and sanity checks for numerical features
-- ✅ Statistical profiling and correlation analysis
+- **Memory-Efficient Processing**: Chunked loading strategies to handle multi-gigabyte datasets on standard hardware.
+- **Advanced Imputation**: Context-aware missing value treatment using statistical mean/mode and domain-specific logic.
+- **Outlier Detection**: Statistical range validation for meteorological and geographical data points.
+- **Temporal Analysis**: Extraction of cyclic patterns (daily, weekly, seasonal) from timestamp data.
 
-### Web Application
+### 💻 Interactive Web Application
 
-- 🗺️ **Hexbin Map** - Geospatial density visualization of accidents
-- 📊 **Temporal Heatmap** - Time-based accident pattern analysis
-- 📈 **Parallel Coordinates Plot** - Multi-dimensional data exploration
-- 🌳 **Regional Treemap** - Hierarchical geographic breakdown
-- 📉 **POI Stacked Bar Chart** - Points of interest impact analysis
-- 🔍 **Advanced Filtering** - Dynamic data querying and exploration
-
-## 📊 Dataset
-
-| Property          | Details                                                                                                           |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Source**        | [US Accidents Dataset on Kaggle](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents)                      |
-| **Records**       | 7.7 Million accident records                                                                                      |
-| **Features**      | 46 original features                                                                                              |
-| **Time Period**   | 2016-2023                                                                                                         |
-| **Coverage**      | All US states                                                                                                     |
-| **Clean Dataset** | [Download from Google Drive](https://drive.google.com/file/d/1iXnZ6impD9DoPduDvE5a_u5a5iWKjux0/view?usp=drivesdk) |
-
-### Key Features in Dataset
-
-- **Location**: Latitude, Longitude, Street, City, County, State, Zipcode
-- **Time**: Start/End Time, Weather Timestamp, Timezone
-- **Weather**: Temperature, Humidity, Pressure, Visibility, Wind Speed/Direction
-- **Severity**: Accident severity levels (1-4)
-- **POI Indicators**: Traffic signals, crossings, junctions, railway, etc.
-- **Light Conditions**: Sunrise/Sunset, Civil/Nautical/Astronomical Twilight
+- **Geospatial Intelligence**:
+  - **Hexbin Maps**: Density visualization of accidents across the US.
+  - **Regional Treemaps**: Hierarchical drill-down into state and county-level data.
+- **Multivariate Analysis**:
+  - **Parallel Coordinates**: Explore correlations between weather, severity, and time.
+  - **Temporal Heatmaps**: Visualize high-risk time windows.
+  - **POI Impact**: Analyze how traffic signals, junctions, and crossings affect accident severity.
+- **Dynamic Filtering**: Real-time data slicing by state, severity level, weather condition, and time range.
 
 ## 🛠️ Technology Stack
 
-### Data Science & Analysis
+### 🧠 Data Science & Analysis
 
-| Technology                                                                                      | Purpose                           |
-| ----------------------------------------------------------------------------------------------- | --------------------------------- |
-| ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)    | Core programming language         |
-| ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)    | Data manipulation and analysis    |
-| ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)       | Numerical computing               |
-| ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat)                        | Data visualization                |
-| ![Seaborn](https://img.shields.io/badge/Seaborn-3776AB?style=flat)                              | Statistical visualizations        |
-| ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat&logo=scipy&logoColor=white)       | Scientific computing & statistics |
-| ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white) | Interactive notebooks             |
+| Category          | Technologies                                                                                                                                                                                                                                                                                                                      |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Core**          | ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white) ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?logo=scipy&logoColor=white) |
+| **Visualization** | ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?logo=python&logoColor=white) ![Seaborn](https://img.shields.io/badge/Seaborn-3776AB?logo=python&logoColor=white)                                                                                                                                                     |
+| **Environment**   | ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=white) ![Anaconda](https://img.shields.io/badge/Anaconda-44A833?logo=anaconda&logoColor=white)                                                                                                                                                      |
 
-### Frontend (React Application)
+### 🎨 Frontend (Client)
 
-| Technology                                                                                                            | Purpose                     |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| ![React](https://img.shields.io/badge/React_19-61DAFB?style=flat&logo=react&logoColor=black)                          | UI framework                |
-| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)              | Type-safe JavaScript        |
-| ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)                                | Build tool & dev server     |
-| ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)          | Utility-first CSS framework |
-| ![Radix UI](https://img.shields.io/badge/Radix_UI-161618?style=flat)                                                  | Accessible UI components    |
-| ![React Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=flat&logo=reactquery&logoColor=white)         | Server state management     |
-| ![Zustand](https://img.shields.io/badge/Zustand-433D37?style=flat)                                                    | Client state management     |
-| ![Recharts](https://img.shields.io/badge/Recharts-22B5BF?style=flat)                                                  | Chart library               |
-| ![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=flat&logo=leaflet&logoColor=white)                       | Interactive maps            |
-| ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-EC5990?style=flat&logo=reacthookform&logoColor=white) | Form handling               |
-| ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=flat)                                                            | Schema validation           |
-| ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white)            | Animations                  |
+| Category          | Technologies                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Framework**     | ![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)                                                                                                                   |
+| **State & Data**  | ![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?logo=reactquery&logoColor=white) ![Zustand](https://img.shields.io/badge/Zustand-433D37?logo=react&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=white)                                                                                                       |
+| **UI / UX**       | ![TailwindCSS](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white) ![Radix UI](https://img.shields.io/badge/Radix_UI-161618?logo=radix-ui&logoColor=white) ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?logo=framer&logoColor=white) ![Lucide](https://img.shields.io/badge/Lucide_Icons-F56565?logo=lucide&logoColor=white) |
+| **Visualization** | ![Recharts](https://img.shields.io/badge/Recharts-22B5BF?logo=react&logoColor=white) ![Leaflet](https://img.shields.io/badge/Leaflet-199900?logo=leaflet&logoColor=white) ![D3.js](https://img.shields.io/badge/D3.js-F9A03C?logo=d3.js&logoColor=white)                                                                                                                      |
+| **Forms**         | ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-EC5990?logo=reacthookform&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3E67B1?logo=zod&logoColor=white)                                                                                                                                                                                           |
 
-### Backend (NestJS API)
+### ⚙️ Backend (Server)
 
-| Technology                                                                                               | Purpose               |
-| -------------------------------------------------------------------------------------------------------- | --------------------- |
-| ![NestJS](https://img.shields.io/badge/NestJS_10-E0234E?style=flat&logo=nestjs&logoColor=white)          | Backend framework     |
-| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white) | Type-safe development |
-| ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma&logoColor=white)             | Database ORM          |
-| ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)                | Relational database   |
-| ![Bun](https://img.shields.io/badge/Bun-000000?style=flat&logo=bun&logoColor=white)                      | JavaScript runtime    |
+| Category      | Technologies                                                                                                                                                                              |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Runtime**   | ![Bun](https://img.shields.io/badge/Bun-000000?logo=bun&logoColor=white)                                                                                                                  |
+| **Framework** | ![NestJS](https://img.shields.io/badge/NestJS_10-E0234E?logo=nestjs&logoColor=white) ![RxJS](https://img.shields.io/badge/RxJS-B7178C?logo=rxjs&logoColor=white)                          |
+| **Database**  | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma_ORM-2D3748?logo=prisma&logoColor=white)                      |
+| **Utilities** | ![Day.js](https://img.shields.io/badge/Day.js-FB6052?logo=javascript&logoColor=white) ![Class Validator](https://img.shields.io/badge/Class_Validator-E0234E?logo=nestjs&logoColor=white) |
 
-### DevOps & Tools
-
-| Technology                                                                                         | Purpose             |
-| -------------------------------------------------------------------------------------------------- | ------------------- |
-| ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)                | Version control     |
-| ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white)       | Code linting        |
-| ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=prettier&logoColor=black) | Code formatting     |
-| ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)    | Frontend deployment |
-
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
 Data-Mining-Project/
-├── 📂 data/
-│   ├── raw/                           # Original dataset samples
-│   │   └── sample_dataset_5k.csv      # 5K record sample for testing
-│   └── processed/                     # Cleaned data + quality reports
-│       ├── US_Accidents_Cleaned.csv   # Cleaned dataset
-│       └── artifacts/                 # Data quality reports
-│           ├── 01_schema_overview.csv
-│           ├── 02_datetime_inference.csv
-│           ├── 03_missingness_columns.csv
-│           ├── 04_range_checks.csv
-│           ├── 05_year_month_counts.csv
-│           ├── 06_categorical_profile.json
-│           ├── 07_numeric_profile.csv
-│           ├── 09_text_profile.csv
-│           └── 10_spearman_corr.csv
+├── 📂 data/                           # Dataset Storage
+│   ├── 📂 raw/                        # Original CSV files (US_Accidents_March23.csv)
+│   └── 📂 processed/                  # Cleaned datasets & quality artifacts
+│       └── artifacts/                 # Generated reports (JSON/CSV profiles)
 │
-├── 📂 notebooks/
-│   ├── dataset_cleaning.ipynb         # Main data cleaning pipeline
-│   ├── dataset_exploration.ipynb      # EDA and statistical analysis
-│   ├── artifacts/                     # Notebook outputs
-│   └── auxiliary_notebooks/           # Supporting notebooks
-│       ├── Group_Project_cleaning.ipynb
-│       ├── sample_cleaned_dataset.ipynb
-│       └── sample_raw_dataset.ipynb
+├── 📂 notebooks/                      # Data Science Environment
+│   ├── dataset_cleaning.ipynb         # 🧹 Main cleaning pipeline
+│   ├── dataset_exploration.ipynb      # 📊 EDA & Statistical Analysis
+│   └── 📂 auxiliary_notebooks/        # Experimental & support notebooks
 │
-├── 📂 DMWEBAPP/
-│   ├── 📂 Sawab-project-back/         # NestJS Backend API
-│   │   ├── src/
-│   │   │   ├── main.ts                # Application entry point
-│   │   │   ├── app.module.ts          # Root module
-│   │   │   ├── accident/              # Accident API module
-│   │   │   │   ├── accident.controller.ts
-│   │   │   │   ├── accident.service.ts
-│   │   │   │   └── accident.module.ts
-│   │   │   ├── common/                # Shared utilities & filters
-│   │   │   └── types/                 # TypeScript definitions
-│   │   ├── prisma/
-│   │   │   ├── schema.prisma          # Database schema
-│   │   │   └── migrations/            # Database migrations
-│   │   └── lib/                       # Shared libraries
+├── 📂 DMWEBAPP/                       # Web Application Monorepo
+│   ├── 📂 Sawab-project-back/         # 🟢 NestJS Backend API
+│   │   ├── src/accident/              # Accident domain logic
+│   │   └── prisma/                    # Database schema & migrations
 │   │
-│   └── 📂 Sawab-project-front/        # React Frontend Application
-│       ├── src/
-│       │   ├── App.tsx                # Main application component
-│       │   ├── components/
-│       │   │   ├── charts/            # Visualization components
-│       │   │   │   ├── HexbinMap.tsx
-│       │   │   │   ├── TemporalHeatmap.tsx
-│       │   │   │   ├── ParallelCoordinatesPlot.tsx
-│       │   │   │   ├── RegionalTreemap.tsx
-│       │   │   │   └── POIStackedBarChart.tsx
-│       │   │   ├── ui/                # Reusable UI components
-│       │   │   └── shared/            # Shared components
-│       │   ├── pages/                 # Application pages
-│       │   ├── hooks/                 # Custom React hooks
-│       │   ├── lib/                   # Utilities & configuration
-│       │   └── routes/                # Routing configuration
-│       └── public/                    # Static assets
+│   └── 📂 Sawab-project-front/        # 🔵 React Frontend Client
+│       ├── src/components/charts/     # Visualization components
+│       ├── src/pages/                 # Route pages
+│       └── src/hooks/                 # Custom React hooks
 │
-├── LICENSE
-└── README.md
+└── README.md                          # Project Documentation
 ```
 
-## 🚀 Getting Started
+## 🚀 Installation & Setup
 
-### Prerequisites
+Follow this comprehensive guide to set up the project from scratch.
 
-- **Python 3.x** - For data analysis notebooks
-- **Node.js 18+** or **Bun** - For web application
-- **MySQL** - For database
+### 0. Prerequisites
 
-### Data Analysis Setup
+Ensure your environment meets these requirements:
+
+- **Node.js** (v18+) or **Bun** (v1.0+)
+- **Python** (v3.8+) with Pip
+- **MySQL Server** (v8.0+)
+- **Git**
+
+### 1. Clone the Repository
 
 ```bash
-# Install Python dependencies
-pip install pandas numpy matplotlib seaborn scipy jupyter
-
-# Run Jupyter notebooks
-jupyter notebook notebooks/
+git clone https://github.com/SawabS/Data-Mining-Project.git
+cd Data-Mining-Project
 ```
 
-### Backend Setup
+### 2. Data Pipeline Setup
+
+1. **Download Data**: Get `US_Accidents_March23.csv` from [Kaggle](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents) and place it in `data/raw/`.
+2. **Install Python Libs**:
+   ```bash
+   pip install pandas numpy matplotlib seaborn scipy jupyter
+   ```
+3. **Run Cleaning**:
+   - Open `notebooks/dataset_cleaning.ipynb` in Jupyter.
+   - Execute all cells to generate `data/processed/US_Accidents_Cleaned.csv`.
+
+### 3. Backend Configuration
 
 ```bash
 cd DMWEBAPP/Sawab-project-back
-
-# Install dependencies
-bun install
-
-# Configure environment
-cp .env.example .env
-# Edit .env with your DATABASE_URL
-
-# Run database migrations
-bunx prisma migrate dev
-
-# Start development server
-bun run dev
 ```
 
-### Frontend Setup
+1. **Install Dependencies**:
+   ```bash
+   bun install
+   ```
+2. **Environment Setup**:
+   Create a `.env` file:
+   ```env
+   DATABASE_URL="mysql://root:password@localhost:3306/accident_db"
+   PORT=3000
+   ```
+3. **Database Init**:
+   ```bash
+   bunx prisma migrate dev --name init
+   ```
+4. **Launch Server**:
+   ```bash
+   bun run dev
+   ```
+
+### 4. Frontend Configuration
+
+Open a new terminal:
 
 ```bash
 cd DMWEBAPP/Sawab-project-front
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
 ```
 
-## 📚 Notebooks
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Launch Client**:
+   ```bash
+   npm run dev
+   ```
+   > Access the application at `http://localhost:5173`
 
-| Notebook                    | Description                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `dataset_cleaning.ipynb`    | Complete data cleaning pipeline with memory-efficient chunking, missing value treatment, duplicate removal, and range validation |
-| `dataset_exploration.ipynb` | Comprehensive EDA including schema audit, statistical profiling, correlation analysis, and visualization generation              |
-| `auxiliary_notebooks/`      | Supporting notebooks for sample analysis and collaborative work                                                                  |
-
-### Cleaning Pipeline Steps
-
-1. **Data Loading** - Memory-safe chunked loading for 7.7M records
-2. **Initial Audit** - Missing values overview and data quality assessment
-3. **Datetime Conversion** - Parse and validate temporal columns
-4. **Duplicate Removal** - Identify and remove duplicate records
-5. **Missing Value Treatment** - Mean imputation (numerical), Mode imputation (categorical)
-6. **Column Pruning** - Drop high-missingness columns (End_Lat, End_Lng, Wind_Chill, Precipitation)
-7. **Range Validation** - Sanity checks for geographical and meteorological features
-
-## 🌐 Web Application
-
-The interactive web application provides real-time exploration of accident data through multiple visualization types:
-
-### Visualizations
-
-| Chart                    | Description                                              |
-| ------------------------ | -------------------------------------------------------- |
-| **Hexbin Map**           | Geographic density visualization using hexagonal binning |
-| **Temporal Heatmap**     | Hour-of-day vs day-of-week accident frequency patterns   |
-| **Parallel Coordinates** | Multi-dimensional exploration of accident features       |
-| **Regional Treemap**     | Hierarchical view of accidents by state/county           |
-| **POI Bar Chart**        | Impact analysis of points of interest on accidents       |
-
-### API Endpoints
-
-The NestJS backend provides RESTful APIs for:
-
-- Accident data retrieval with filtering
-- Aggregation queries for visualizations
-- Geospatial queries for map-based views
-
-## 📄 Documentation
-
-- **Cleaning Report**: `DM_Cleaning_Report.pdf` - Detailed data quality analysis and cleaning methodology
-- **Data Artifacts**: Quality reports and profiling outputs in `data/processed/artifacts/`
-- **API Documentation**: Available at `/api` endpoint when backend is running
-
-## 🎓 Academic Project
+## 🎓 Academic Context
 
 **Institution**: American University of Kurdistan (AUK)  
-**Course**: Data Mining  
-**Focus Areas**:
+**Course**: Data Mining (Fall 2025)  
+**Project Type**: Final Capstone Project
 
-- Real-world large-scale data preprocessing
-- Statistical analysis and pattern discovery
-- Data visualization and interactive exploration
-- Full-stack web application development
+This project demonstrates the practical application of data mining techniques—from raw data preprocessing and statistical analysis to the development of a user-facing analytical tool.
 
 ---
 
 <div align="center">
-
-**Data Mining Course Project - American University of Kurdistan**
-
-Made with ❤️ by the project team
-
+  <sub>Built with ❤️ by the Data Mining Course Team</sub>
 </div>
