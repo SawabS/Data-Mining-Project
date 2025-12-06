@@ -347,7 +347,7 @@ export class AccidentService {
 
     // Use raw SQL for server-side grid aggregation - much faster
     // Wrap in a derived table so GROUP BY columns exactly match SELECT columns (satisfies only_full_group_by)
-    const result = await this.prismaService.$queryRawUnsafe<
+    const pointsQuery = this.prismaService.$queryRawUnsafe<
       { gridLat: number; gridLng: number; cnt: bigint }[]
     >(
       `SELECT gridLat, gridLng, COUNT(*) as cnt
@@ -361,14 +361,8 @@ export class AccidentService {
        GROUP BY gridLat, gridLng`,
     );
 
-    const points: HexbinPoint[] = result.map((r) => ({
-      lat: Number(r.gridLat),
-      lng: Number(r.gridLng),
-      count: Number(r.cnt),
-    }));
-
     // Get bounds separately
-    const boundsResult = await this.prismaService.$queryRawUnsafe<
+    const boundsQuery = this.prismaService.$queryRawUnsafe<
       { minLat: number; maxLat: number; minLng: number; maxLng: number }[]
     >(
       `SELECT 
@@ -379,6 +373,14 @@ export class AccidentService {
        FROM Accident
        WHERE ${whereClause} AND startLat IS NOT NULL AND startLng IS NOT NULL`,
     );
+
+    const [result, boundsResult] = await Promise.all([pointsQuery, boundsQuery]);
+
+    const points: HexbinPoint[] = result.map((r) => ({
+      lat: Number(r.gridLat),
+      lng: Number(r.gridLng),
+      count: Number(r.cnt),
+    }));
 
     const bounds = boundsResult.length > 0 && boundsResult[0].minLat != null
       ? {
@@ -434,18 +436,17 @@ export class AccidentService {
     }
 
     // Get total count first
-    const countResult = await this.prismaService.$queryRawUnsafe<{ total: bigint }[]>(
+    const countQuery = this.prismaService.$queryRawUnsafe<{ total: bigint }[]>(
       `SELECT COUNT(*) as total FROM Accident WHERE ${whereClause}`,
       ...params,
     );
-    const totalCount = Number(countResult[0]?.total || 0);
 
     // OPTIMIZED: Use UUID-based sampling instead of ORDER BY RAND()
     // This avoids a full table scan and sort, using the primary key index instead
     const randomUuid = crypto.randomUUID();
     
     // Try to get data starting from a random point
-    let sampledData = await this.prismaService.$queryRawUnsafe<WeatherAccidentPoint[]>(
+    const sampleQuery = this.prismaService.$queryRawUnsafe<WeatherAccidentPoint[]>(
       `SELECT temperature, humidity, pressure, visibility, windSpeed, severity
        FROM Accident
        WHERE ${whereClause} AND id >= '${randomUuid}'
@@ -453,6 +454,28 @@ export class AccidentService {
       ...params,
       limit,
     );
+
+    // Get ranges using aggregate queries (faster than scanning all data)
+    const rangesQuery = this.prismaService.$queryRawUnsafe<any[]>(
+      `SELECT 
+        MIN(temperature) as minTemp, MAX(temperature) as maxTemp,
+        MIN(humidity) as minHum, MAX(humidity) as maxHum,
+        MIN(pressure) as minPres, MAX(pressure) as maxPres,
+        MIN(visibility) as minVis, MAX(visibility) as maxVis,
+        MIN(windSpeed) as minWind, MAX(windSpeed) as maxWind
+       FROM Accident
+       WHERE ${whereClause}`,
+      ...params,
+    );
+
+    const [countResult, initialSampledData, rangesResult] = await Promise.all([
+      countQuery,
+      sampleQuery,
+      rangesQuery,
+    ]);
+
+    const totalCount = Number(countResult[0]?.total || 0);
+    let sampledData = initialSampledData;
 
     // If we didn't get enough data (random point was near end), wrap around to beginning
     if (sampledData.length < limit) {
@@ -476,19 +499,6 @@ export class AccidentService {
       windSpeed: Number(acc.windSpeed),
       severity: Number(acc.severity),
     }));
-
-    // Get ranges using aggregate queries (faster than scanning all data)
-    const rangesResult = await this.prismaService.$queryRawUnsafe<any[]>(
-      `SELECT 
-        MIN(temperature) as minTemp, MAX(temperature) as maxTemp,
-        MIN(humidity) as minHum, MAX(humidity) as maxHum,
-        MIN(pressure) as minPres, MAX(pressure) as maxPres,
-        MIN(visibility) as minVis, MAX(visibility) as maxVis,
-        MIN(windSpeed) as minWind, MAX(windSpeed) as maxWind
-       FROM Accident
-       WHERE ${whereClause}`,
-      ...params,
-    );
 
     const ranges = rangesResult[0];
 
@@ -541,16 +551,20 @@ export class AccidentService {
       whereClause += ' AND (hour >= 18 OR hour < 6)';
     }
 
-    // Single optimized query for hierarchical data
+    // OPTIMIZED: Adaptive granularity
+    // If filtering by state, show full detail (City level)
+    // If viewing all US, show high-level (County level) to improve performance
+    const groupByCity = !!state;
+
     const result = await this.prismaService.$queryRawUnsafe<
-      { state: string; county: string; city: string; count: bigint; avgSeverity: number }[]
+      { state: string; county: string; city?: string; count: bigint; avgSeverity: number }[]
     >(
-      `SELECT state, county, city, 
+      `SELECT state, county${groupByCity ? ', city' : ''}, 
         COUNT(*) as count, 
         AVG(severity) as avgSeverity
        FROM Accident
        WHERE ${whereClause}
-       GROUP BY state, county, city`,
+       GROUP BY state, county${groupByCity ? ', city' : ''}`,
       ...params,
     );
 
@@ -566,12 +580,23 @@ export class AccidentService {
       if (!countyMap.has(row.county)) {
         countyMap.set(row.county, new Map());
       }
-      const cityMap = countyMap.get(row.county)!;
-
-      cityMap.set(row.city, {
-        count: Number(row.count),
-        avgSeverity: Number(row.avgSeverity) || 0,
-      });
+      
+      // Only process cities if we grouped by them
+      if (groupByCity && row.city) {
+        const cityMap = countyMap.get(row.county)!;
+        cityMap.set(row.city, {
+          count: Number(row.count),
+          avgSeverity: Number(row.avgSeverity) || 0,
+        });
+      } else {
+        // Store county-level data directly if not grouping by city
+        // We use a special key '' to store the aggregate for the county itself
+        const cityMap = countyMap.get(row.county)!;
+        cityMap.set('', {
+          count: Number(row.count),
+          avgSeverity: Number(row.avgSeverity) || 0,
+        });
+      }
     });
 
     // Convert to TreemapNode structure
@@ -589,23 +614,30 @@ export class AccidentService {
         let countySeveritySum = 0;
 
         cityMap.forEach((data, cityName) => {
-          countyChildren.push({
-            name: cityName,
-            value: data.count,
-            avgSeverity: data.avgSeverity,
-          });
+          // If we have city data (cityName is not empty), add it as a child
+          if (cityName) {
+            countyChildren.push({
+              name: cityName,
+              value: data.count,
+              avgSeverity: data.avgSeverity,
+            });
+          }
+          
+          // Accumulate totals
           countyTotal += data.count;
           countySeveritySum += data.avgSeverity * data.count;
         });
 
-        // Sort children by value descending and limit
-        countyChildren.sort((a, b) => b.value - a.value);
+        // If we have city children, sort and limit them
+        if (countyChildren.length > 0) {
+          countyChildren.sort((a, b) => b.value - a.value);
+        }
 
         stateChildren.push({
           name: countyName,
           value: countyTotal,
           avgSeverity: countyTotal > 0 ? countySeveritySum / countyTotal : 0,
-          children: countyChildren.slice(0, 20), // Limit cities per county
+          children: countyChildren.length > 0 ? countyChildren.slice(0, 20) : undefined,
         });
         stateTotal += countyTotal;
         stateSeveritySum += countySeveritySum;
